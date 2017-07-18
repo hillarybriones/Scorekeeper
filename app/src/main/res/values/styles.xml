@@ -6,6 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
+    <style name="Button" parent="android:style/Widget.Button">
+        <item name="android:background">@drawable/buttons</item>
+
+
+    </style>
+    <dimen name="buttonHeight">70dp</dimen>
+    <dimen name="buttonWidth">70dp</dimen>
+
 
 </resources>
