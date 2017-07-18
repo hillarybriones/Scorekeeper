@@ -2,6 +2,7 @@ package tech.hyperdev.scorekeeper.fragments;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,15 @@ private TextView textView;
     private String name;
     private ImageButton plus,minus;
     private int clickcount=0;
-    private TextView score;
+    private TextView score,teamName;
     private String param1="key1";
 
     public ScoreFragment() {
         // Required empty public constructor
     }
-
+    public ScoreFragment(String teamName) {
+        this.name = teamName;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,8 +40,10 @@ private TextView textView;
         score=(TextView)v.findViewById(R.id.textView2);
 
         if(savedInstanceState!=null){
-            clickcount = savedInstanceState.getInt("textView2",0);
+            clickcount = savedInstanceState.getInt("textView2");
+
             score.setText(String.valueOf(clickcount));
+           // name=savedInstanceState.getString("TeamName);
         }
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +82,18 @@ public static  ScoreFragment newInstance(String name ){
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("textView2",clickcount);
+        if(outState!=null) {
+            outState.putInt("textView2", clickcount);
+        }
     }
+   @Override
+   public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+       super.onViewStateRestored(savedInstanceState);
+       if(savedInstanceState!=null){
+          // score=Integer.parseInt(savedInstanceState.getString("textView2"));
+       }
+   }
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

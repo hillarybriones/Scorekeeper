@@ -1,6 +1,8 @@
 package tech.hyperdev.scorekeeper.activities;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,14 +28,23 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton plus, minus;
     private int clickcount = 0;
     private TextView score;
+    int mTheme;
     private Spinner spThemes;
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
     //private ScoreFragment objA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Utils.onActivityCreateSetTheme(this);
+        prefs = this.getPreferences(Context.MODE_PRIVATE);
+        editor = prefs.edit();
+
+        if(prefs.getInt("Theme", 0) != 0 && savedInstanceState != null){
+            mTheme = prefs.getInt("Theme", 0);
+        }
+        setTheme(mTheme);
         setContentView(R.layout.activity_main);
 
 
@@ -46,12 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment2, fragmentB)
                 .commit();
         if(savedInstanceState==null);
-        fragmentA = ScoreFragment.newInstance("Team 1");
-        fragmentB = ScoreFragment.newInstance("Team 2");
-
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment1, fragmentA)
-                .replace(R.id.fragment2, fragmentB)
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment1,fragmentA)
+                .commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment2,fragmentB)
                 .commit();
 
 
