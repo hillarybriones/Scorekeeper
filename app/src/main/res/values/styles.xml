@@ -16,5 +16,14 @@
     <dimen name="buttonHeight">70dp</dimen>
     <dimen name="buttonWidth">70dp</dimen>
 
+    <style name="page_background_wh">
+        <item name="android:background">@android:drawable/dialog_holo_light_frame</item>
+    </style>
+    <style name="dark_page_background">
+        <item name="android:background">@android:drawable/dialog_holo_dark_frame</item>
+    </style>
+    <style name="BlackTheme" parent="android:Theme.Material.NoActionBar">
+
+        +   </style>
 
 </resources>

@@ -1,5 +1,6 @@
 package tech.hyperdev.scorekeeper.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ private TextView textView;
     private ImageButton plus,minus;
     private int clickcount=0;
     private TextView score;
+    private String param1="key1";
 
     public ScoreFragment() {
         // Required empty public constructor
@@ -33,6 +35,11 @@ private TextView textView;
         plus=(ImageButton)v.findViewById(R.id.btnPlus);
         minus=(ImageButton)v.findViewById(R.id.btnMinus);
         score=(TextView)v.findViewById(R.id.textView2);
+
+        if(savedInstanceState!=null){
+            clickcount = savedInstanceState.getInt("textView2",0);
+            score.setText(String.valueOf(clickcount));
+        }
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,4 +74,14 @@ public static  ScoreFragment newInstance(String name ){
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("textView2",clickcount);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 }

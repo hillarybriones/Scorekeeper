@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Material_Light" parent="Theme.AppCompat.Light">
+        <item name="android:background">@style/page_background_wh</item>
+</style>
+    <style name="NightMode" >
+        <item name="android:background">@style/dark_page_background</item>
+    </style>
+
+
+</resources>
