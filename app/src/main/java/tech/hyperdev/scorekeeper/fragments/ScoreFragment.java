@@ -24,4 +24,5 @@ public class ScoreFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_score, container, false);
     }
 
+
 }
